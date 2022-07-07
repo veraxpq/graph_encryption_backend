@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_HOME">/tmp/logs/</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Stdout">
+            <PatternLayout pattern="%d [%t] %-5p %l - %m%n"/>
+            <Filters>
+                <ThresholdFilter level="DEBUG"/>
+                <ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+        </Console>
+        <RollingFile name="Trace" fileName="log_trace.txt" filePattern="log_trace_%d{yyyy-MM-dd}.txt" >
+            <PatternLayout pattern="%d [%t] %-5p %l - %m%n"/>
+            <Filters>
+                <ThresholdFilter level="TRACE" onMatch="ACCEPT"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="sgcc" maxDepth="1">
+                    <IfFileName glob="log_trace_*.txt" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <RollingFile name="Info" fileName="log_info.txt" filePattern="log_info_%d{yyyy-MM-dd}.txt" >
+            <PatternLayout pattern="%d [%t] %-5p %l - %m%n"/>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="sgcc" maxDepth="1">
+                    <IfFileName glob="log_info_*.txt" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <RollingFile name="Error" fileName="log_error.txt" filePattern="log_error_%d{yyyy-MM-dd}.txt" >
+            <PatternLayout pattern="%d [%t] %-5p %l - %m%n"/>
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="sgcc" maxDepth="1">
+                    <IfFileName glob="log_error_*.txt" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="Stdout"/>
+            <AppenderRef ref="Trace"/>
+            <AppenderRef ref="Info" />
+            <AppenderRef ref="Error"/>
+        </Root>
+    </Loggers>
+</Configuration>
