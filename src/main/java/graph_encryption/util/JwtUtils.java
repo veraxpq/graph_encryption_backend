@@ -14,12 +14,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class helps to generate token.
+ */
 public class JwtUtils {
     private static final Logger logger = LogManager.getLogger(JwtUtils.class);
 
-    private static final String SECRET = "aiit-hx-digital-oc-20201021";
+    private static final String SECRET = "graph-encryption-hx-digital-oc-20201021";
     private static final long EXPIRATION = 7200L;
 
+    /**
+     * This method creates token with the given user info
+     *
+     * @param user input user info
+     * @return generated token
+     */
     public static String createToken(UserLoginInfo user) {
         Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000);
         Map<String, Object> map = new HashMap<>();
@@ -35,6 +44,12 @@ public class JwtUtils {
         return token;
     }
 
+    /**
+     * This method verifies the token.
+     *
+     * @param token input token
+     * @return if the token is valid
+     */
     public static Map<String, Claim> verifyToken(String token) {
         DecodedJWT jwt = null;
         try {

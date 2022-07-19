@@ -16,17 +16,25 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-
+/**
+ * This class is the interceptor to add token verification before api is called.
+ */
 @Component
 @Aspect()
-public class VerfifyTokenAOPInterceptor {
+public class VerifyTokenAOPInterceptor {
 
-    private static final Logger logger = LogManager.getLogger(VerfifyTokenAOPInterceptor.class.getName());
+    private static final Logger logger = LogManager.getLogger(VerifyTokenAOPInterceptor.class.getName());
 
-
+    /**
+     * This method register for the pointcut.
+     */
     @Pointcut("@within(graph_encryption.wrapper.VerifyToken)||@annotation(graph_encryption.wrapper.VerifyToken)")
     public void pointcut() {}
 
+    /**
+     * This method verify if the request contains verified token before it is called.
+     * @param point
+     */
     @Before("pointcut()")
     public void before(JoinPoint point) {
 

@@ -1,28 +1,24 @@
 package graph_encryption.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import graph_encryption.common.Result;
 import graph_encryption.domain.client.UserInfoMapper;
-import graph_encryption.domain.model.*;
+import graph_encryption.domain.model.UserInfo;
+import graph_encryption.domain.model.UserInfoExample;
 import graph_encryption.model.UserLoginInfo;
 import graph_encryption.model.UserText;
 import graph_encryption.service.UserService;
 import graph_encryption.util.CipherHelper;
-import graph_encryption.util.HttpUtils;
 import graph_encryption.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import javax.jws.soap.SOAPBinding;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * This class represents the implementation of the UserService interface.
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -70,7 +66,7 @@ public class UserServiceImpl implements UserService {
         criteria.andEmailEqualTo(userLoginInfo.getEmail());
         List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
         if (userInfos == null || userInfos.size() == 0) {
-            return new Result("This email does not register.", 0 );
+            return new Result("This email does not register.", 0);
         } else {
             String passWdHash = CipherHelper.getSHA256(userLoginInfo.getPassword());
             if (userInfos.get(0).getPassword().equals(passWdHash)) {
@@ -79,7 +75,7 @@ public class UserServiceImpl implements UserService {
                 userText.setEmail(userInfo.getEmail());
                 userText.setToken(JwtUtils.createToken(userLoginInfo));
                 userText.setId(userInfo.getUserId());
-                return new Result(userText,1);
+                return new Result(userText, 1);
             } else {
                 return new Result("The password is not correct.", 0);
             }

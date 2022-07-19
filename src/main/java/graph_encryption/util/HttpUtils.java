@@ -20,10 +20,20 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-
+/**
+ * This class is the util class to send request to url.
+ */
 public class HttpUtils {
 
-
+    /**
+     * This method post request to given url with given params.
+     *
+     * @param url destination url
+     * @param params given params
+     * @param body body data
+     * @param contentType content type of the data
+     * @return response from the given url
+     */
     public static String postRequest(String url, Map<String, String> params, String body, ContentType contentType) {
         try {
             PoolingHttpClientConnectionManager cManager = getConnectionManager();
@@ -79,6 +89,13 @@ public class HttpUtils {
         }
     }
 
+    /**
+     * This method send get request to the given url.
+     *
+     * @param url destination url
+     * @param params given params
+     * @return response from the url
+     */
     public static String getRequest(String url, Map<String, String> params) {
         try {
             PoolingHttpClientConnectionManager cManager = getConnectionManager();

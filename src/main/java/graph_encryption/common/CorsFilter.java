@@ -8,10 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class allows the server to load resources from other origins.
+ */
 @Component
 @WebFilter(urlPatterns = "/*", filterName = "CorsFilter")
 public class CorsFilter implements Filter {
 
+    /**
+     * This method set the list that the server can access.
+     *
+     * @param req given servlet request
+     * @param res given servlet response
+     * @param chain given filter chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
@@ -25,10 +37,4 @@ public class CorsFilter implements Filter {
         chain.doFilter(req, res);
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) {
-    }
-
-    @Override
-    public void destroy() {}
 }
