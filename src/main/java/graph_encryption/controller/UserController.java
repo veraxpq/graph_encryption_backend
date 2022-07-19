@@ -8,6 +8,8 @@ import graph_encryption.wrapper.VerifyToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
@@ -52,4 +54,16 @@ public class UserController {
     public Result<JSONObject> login(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
         return userService.login(obj);
     }
+
+    @GetMapping("/encrypt")
+    public void encryptInput(MultipartFile imageFile, String message){
+        System.out.println("Encrypted successfully");
+
+    }
+
+    @GetMapping("/decrypt")
+    public void decryptInput(){
+        System.out.println("Decrypted successfully");
+    }
+
 }
