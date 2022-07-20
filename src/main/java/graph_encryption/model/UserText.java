@@ -9,6 +9,33 @@ public class UserText {
     private int id;
 
     /**
+     * Get email from the object
+     *
+     * @return email of the object
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Get token of the object
+     *
+     * @return token of the object
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * Get id of the object
+     *
+     * @return id of the object
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
      * Set id to the object.
      *
      * @param id given id

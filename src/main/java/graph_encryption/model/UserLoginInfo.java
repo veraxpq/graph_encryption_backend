@@ -8,6 +8,15 @@ public class UserLoginInfo {
     private String password;
 
     /**
+     * Set email to the object with the given email
+     *
+     * @param email given email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * Get email of the object.
      *
      * @return email of the object
