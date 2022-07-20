@@ -39,5 +39,11 @@
             <ignoreColumn column="create_time"/>
         </table>
 
+        <table schema="heroku_00aabd9fbc22340" tableName="image_info" catalog="">
+            <property name="ignoreQualifiersAtRuntime" value="true" />
+            <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
+            <ignoreColumn column="create_time"/>
+        </table>
+
     </context>
 </generatorConfiguration>

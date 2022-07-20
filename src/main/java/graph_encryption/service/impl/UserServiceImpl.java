@@ -25,8 +25,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-    private final String RESTAURANT_DETAIL_API = "https://api.yelp.com/v3/businesses/";
-
     @Override
     public JSONObject getUserInfo(int id) {
         UserInfo userInfos = userInfoMapper.selectByPrimaryKey(id);
