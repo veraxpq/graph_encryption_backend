@@ -28,14 +28,12 @@ public class UserController {
     /**
      * This method get user info with the given user id.
      *
-     * @param request given servlet request
-     * @param response given servlet response
      * @param id given user id
      * @return user info
      */
     @VerifyToken
     @GetMapping(value="/user")
-    public Result<JSONObject> getUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) {
+    public Result<JSONObject> getUserInfo(@RequestParam("id") int id) {
         JSONObject user = userService.getUserInfo(id);
         return new Result<>(user, 1);
     }
@@ -43,14 +41,12 @@ public class UserController {
     /**
      * This method update user info with the given user info.
      *
-     * @param request given servlet request
-     * @param response given servlet response
      * @param user given user info
      * @return if the update is successful
      */
     @VerifyToken
     @PutMapping(value = "/user")
-    public Result updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
+    public Result updateUserInfo(@RequestBody JSONObject user) {
         userService.updateUserInfo(user);
         return new Result("", 1);
     }
@@ -58,13 +54,11 @@ public class UserController {
     /**
      * This method creates a user with the given user info.
      *
-     * @param request given servlet request
-     * @param response given servlet response
      * @param user given user info
      * @return if the operation is successful
      */
     @PostMapping(value = "/user")
-    public Result createUser(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
+    public Result createUser(@RequestBody JSONObject user) {
         userService.createUser(user);
         return new Result("", 1);
     }
@@ -72,15 +66,12 @@ public class UserController {
     /**
      * This method deletes user with the given user id.
      *
-     * @param request given servlet request
-     * @param response given servlet response
      * @param id given user id
      * @return if the operation succeeds
      */
     @VerifyToken
     @DeleteMapping(value = "/user")
-    public Result deleteUser(HttpServletRequest request, HttpServletResponse response,
-                           @RequestParam("id") int id) {
+    public Result deleteUser(@RequestParam("id") int id) {
         userService.deleteUser(id);
         return new Result("", 1);
     }
@@ -88,25 +79,12 @@ public class UserController {
     /**
      * This method login user with the given user info.
      *
-     * @param request given servlet request
-     * @param response given servlet response
      * @param user given user info
      * @return if the operation succeeds
      */
     @PostMapping(value = "/login")
-    public Result<JSONObject> login(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
+    public Result<JSONObject> login(@RequestBody JSONObject user) {
         return userService.login(user);
-    }
-
-    @GetMapping("/encrypt")
-    public void encryptInput(MultipartFile imageFile, String message){
-        System.out.println("Encrypted successfully");
-
-    }
-
-    @GetMapping("/decrypt")
-    public void decryptInput(){
-        System.out.println("Decrypted successfully");
     }
 
 }

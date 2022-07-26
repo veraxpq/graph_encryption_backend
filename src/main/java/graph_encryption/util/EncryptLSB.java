@@ -8,30 +8,40 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 @Component
 public class EncryptLSB {
-    public static void Encrypt(File imageFile, String message) {
+    public static String Encrypt(String imageUrl, String message) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 //        String newImageFileString = directory + "\\export.png";
 //        File newImageFile = new File(newImageFileString);
-
-        BufferedImage image;
+        HttpURLConnection connection = null;
+        BufferedImage image = null;
         try {
-            image = ImageIO.read(imageFile);
-            BufferedImage imageToEncrypt = GetImageToEncrypt(image);
-            Pixel[] pixels = GetPixelArray(imageToEncrypt);
-            String[] messageInBinary = ConvertMessageToBinary(message);
-            EncodeMessageBinaryInPixels(pixels, messageInBinary);
-            ReplacePixelsInNewBufferedImage(pixels, image);
-//            SaveNewFile(image, newImageFile); **Write into DB
+            connection = (HttpURLConnection) new URL(imageUrl).openConnection();
+            connection.connect();
+            image = ImageIO.read(connection.getInputStream());
+            connection.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        //            image = ImageIO.read(imageFile);
+        BufferedImage imageToEncrypt = GetImageToEncrypt(image);
+        Pixel[] pixels = GetPixelArray(imageToEncrypt);
+        String[] messageInBinary = ConvertMessageToBinary(message);
+        EncodeMessageBinaryInPixels(pixels, messageInBinary);
+        ReplacePixelsInNewBufferedImage(pixels, image);
+//            SaveNewFile(image, newImageFile); **Write into DB
+        return "encrypted image url";
 
     }
 

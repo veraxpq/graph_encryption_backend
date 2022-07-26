@@ -99,17 +99,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="graph_encryption.domain.model.UserInfo">
-    insert into user_info (user_id, email, phone, 
-      password)
-    values (#{userId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_info (email, phone, password
+      )
+    values (#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="graph_encryption.domain.model.UserInfo">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
       <if test="email != null">
         email,
       </if>
@@ -121,9 +124,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>

@@ -6,6 +6,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -13,20 +16,27 @@ import javax.swing.JFileChooser;
 
 @Component
 public class DecryptLSB {
-    public static void Decrypt(File imageFile) {
+    public static String Decrypt(String imageUrl) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 //        String newImageFileString = directory + "\\export.png";
 //        File newImageFile = new File(newImageFileString);
-
-        BufferedImage image;
+        HttpURLConnection connection = null;
+        BufferedImage image = null;
         try {
-            image = ImageIO.read(imageFile);
-            Pixel[] pixels = GetPixelArray(image);
-            System.out.println(DecodeMessageFromPixels(pixels));
+            connection = (HttpURLConnection) new URL(imageUrl).openConnection();
+            connection.connect();
+            image = ImageIO.read(connection.getInputStream());
+            connection.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        //            image = ImageIO.read(imageFile);
+        Pixel[] pixels = GetPixelArray(image);
+        System.out.println(DecodeMessageFromPixels(pixels));
+
+        return "decrypted message";
     }
 
     private static Pixel[] GetPixelArray(BufferedImage imageToEncrypt){

@@ -225,73 +225,73 @@ public class ImageInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andUrlIsNull() {
-            addCriterion("url is null");
+        public Criteria andOriginalImageUrlIsNull() {
+            addCriterion("original_image_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIsNotNull() {
-            addCriterion("url is not null");
+        public Criteria andOriginalImageUrlIsNotNull() {
+            addCriterion("original_image_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlEqualTo(String value) {
-            addCriterion("url =", value, "url");
+        public Criteria andOriginalImageUrlEqualTo(String value) {
+            addCriterion("original_image_url =", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNotEqualTo(String value) {
-            addCriterion("url <>", value, "url");
+        public Criteria andOriginalImageUrlNotEqualTo(String value) {
+            addCriterion("original_image_url <>", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlGreaterThan(String value) {
-            addCriterion("url >", value, "url");
+        public Criteria andOriginalImageUrlGreaterThan(String value) {
+            addCriterion("original_image_url >", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("url >=", value, "url");
+        public Criteria andOriginalImageUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("original_image_url >=", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlLessThan(String value) {
-            addCriterion("url <", value, "url");
+        public Criteria andOriginalImageUrlLessThan(String value) {
+            addCriterion("original_image_url <", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlLessThanOrEqualTo(String value) {
-            addCriterion("url <=", value, "url");
+        public Criteria andOriginalImageUrlLessThanOrEqualTo(String value) {
+            addCriterion("original_image_url <=", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlLike(String value) {
-            addCriterion("url like", value, "url");
+        public Criteria andOriginalImageUrlLike(String value) {
+            addCriterion("original_image_url like", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNotLike(String value) {
-            addCriterion("url not like", value, "url");
+        public Criteria andOriginalImageUrlNotLike(String value) {
+            addCriterion("original_image_url not like", value, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIn(List<String> values) {
-            addCriterion("url in", values, "url");
+        public Criteria andOriginalImageUrlIn(List<String> values) {
+            addCriterion("original_image_url in", values, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNotIn(List<String> values) {
-            addCriterion("url not in", values, "url");
+        public Criteria andOriginalImageUrlNotIn(List<String> values) {
+            addCriterion("original_image_url not in", values, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlBetween(String value1, String value2) {
-            addCriterion("url between", value1, value2, "url");
+        public Criteria andOriginalImageUrlBetween(String value1, String value2) {
+            addCriterion("original_image_url between", value1, value2, "originalImageUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNotBetween(String value1, String value2) {
-            addCriterion("url not between", value1, value2, "url");
+        public Criteria andOriginalImageUrlNotBetween(String value1, String value2) {
+            addCriterion("original_image_url not between", value1, value2, "originalImageUrl");
             return (Criteria) this;
         }
 
@@ -352,6 +352,216 @@ public class ImageInfoExample {
 
         public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
             addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIsNull() {
+            addCriterion("password is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIsNotNull() {
+            addCriterion("password is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordEqualTo(String value) {
+            addCriterion("password =", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotEqualTo(String value) {
+            addCriterion("password <>", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThan(String value) {
+            addCriterion("password >", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("password >=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThan(String value) {
+            addCriterion("password <", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThanOrEqualTo(String value) {
+            addCriterion("password <=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLike(String value) {
+            addCriterion("password like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotLike(String value) {
+            addCriterion("password not like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIn(List<String> values) {
+            addCriterion("password in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotIn(List<String> values) {
+            addCriterion("password not in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordBetween(String value1, String value2) {
+            addCriterion("password between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotBetween(String value1, String value2) {
+            addCriterion("password not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageIsNull() {
+            addCriterion("message is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageIsNotNull() {
+            addCriterion("message is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageEqualTo(String value) {
+            addCriterion("message =", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNotEqualTo(String value) {
+            addCriterion("message <>", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageGreaterThan(String value) {
+            addCriterion("message >", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageGreaterThanOrEqualTo(String value) {
+            addCriterion("message >=", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageLessThan(String value) {
+            addCriterion("message <", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageLessThanOrEqualTo(String value) {
+            addCriterion("message <=", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageLike(String value) {
+            addCriterion("message like", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNotLike(String value) {
+            addCriterion("message not like", value, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageIn(List<String> values) {
+            addCriterion("message in", values, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNotIn(List<String> values) {
+            addCriterion("message not in", values, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageBetween(String value1, String value2) {
+            addCriterion("message between", value1, value2, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNotBetween(String value1, String value2) {
+            addCriterion("message not between", value1, value2, "message");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlIsNull() {
+            addCriterion("encrypted_image_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlIsNotNull() {
+            addCriterion("encrypted_image_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlEqualTo(String value) {
+            addCriterion("encrypted_image_url =", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlNotEqualTo(String value) {
+            addCriterion("encrypted_image_url <>", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlGreaterThan(String value) {
+            addCriterion("encrypted_image_url >", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("encrypted_image_url >=", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlLessThan(String value) {
+            addCriterion("encrypted_image_url <", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlLessThanOrEqualTo(String value) {
+            addCriterion("encrypted_image_url <=", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlLike(String value) {
+            addCriterion("encrypted_image_url like", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlNotLike(String value) {
+            addCriterion("encrypted_image_url not like", value, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlIn(List<String> values) {
+            addCriterion("encrypted_image_url in", values, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlNotIn(List<String> values) {
+            addCriterion("encrypted_image_url not in", values, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlBetween(String value1, String value2) {
+            addCriterion("encrypted_image_url between", value1, value2, "encryptedImageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andEncryptedImageUrlNotBetween(String value1, String value2) {
+            addCriterion("encrypted_image_url not between", value1, value2, "encryptedImageUrl");
             return (Criteria) this;
         }
     }

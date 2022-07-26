@@ -7,9 +7,15 @@ public class ImageInfo {
 
     private Date date;
 
-    private String url;
+    private String originalImageUrl;
 
     private Integer userId;
+
+    private String password;
+
+    private String message;
+
+    private String encryptedImageUrl;
 
     public Integer getImageId() {
         return imageId;
@@ -27,12 +33,12 @@ public class ImageInfo {
         this.date = date;
     }
 
-    public String getUrl() {
-        return url;
+    public String getOriginalImageUrl() {
+        return originalImageUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setOriginalImageUrl(String originalImageUrl) {
+        this.originalImageUrl = originalImageUrl;
     }
 
     public Integer getUserId() {
@@ -41,5 +47,29 @@ public class ImageInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getEncryptedImageUrl() {
+        return encryptedImageUrl;
+    }
+
+    public void setEncryptedImageUrl(String encryptedImageUrl) {
+        this.encryptedImageUrl = encryptedImageUrl;
     }
 }
