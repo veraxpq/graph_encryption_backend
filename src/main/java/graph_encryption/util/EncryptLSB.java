@@ -17,6 +17,12 @@ import javax.swing.JFileChooser;
 
 @Component
 public class EncryptLSB {
+    /**
+     * Encrypt method encrypts the LSB of the image pixels
+     * @param imageUrl image source passed in
+     * @param message message we want to encrypt (string)
+     * @return
+     */
     public static String Encrypt(String imageUrl, String message) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 //        String newImageFileString = directory + "\\export.png";
@@ -35,18 +41,22 @@ public class EncryptLSB {
         }
 
         //            image = ImageIO.read(imageFile);
-        BufferedImage imageToEncrypt = GetImageToEncrypt(image);
+        BufferedImage imageToEncrypt = GetImageToEncrypt(image); //use a buffer copy of the original image
         Pixel[] pixels = GetPixelArray(imageToEncrypt);
         String[] messageInBinary = ConvertMessageToBinary(message);
         EncodeMessageBinaryInPixels(pixels, messageInBinary);
         ReplacePixelsInNewBufferedImage(pixels, image);
-//            SaveNewFile(image, newImageFile); **Write into DB
+//        SaveNewFile(image, newImageFile); //**Write into DB
         return "encrypted image url";
 
     }
 
-    /*
-     * Copies the image into a new buffered image.
+    /**
+     * Copies the image into a new buffered image
+     * Color Model determines how colors are represented within AWT
+     *
+     * @param image
+     * @return
      */
     private static BufferedImage GetImageToEncrypt(BufferedImage image) {
         ColorModel colorModel = image.getColorModel();
@@ -55,8 +65,10 @@ public class EncryptLSB {
         return new BufferedImage(colorModel, raster, isAlphaPremultiplied, null);
     }
 
-    /*
-     * Gets two dimensional array of colors from the image to encrypt.
+    /**
+     * Gets two dimensional array of colors from the image to encrypt
+     * @param imageToEncrypt
+     * @return
      */
     private static Pixel[] GetPixelArray(BufferedImage imageToEncrypt){
         int height = imageToEncrypt.getHeight();
