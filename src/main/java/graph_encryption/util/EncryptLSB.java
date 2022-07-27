@@ -25,7 +25,7 @@ public class EncryptLSB {
      */
     public static String Encrypt(String imageUrl, String message) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-//        String newImageFileString = directory + "\\export.png";
+//        String newImageFileString = "/Users/chenyian261/Documents/NEUSummer/" + "\\export.png";
 //        File newImageFile = new File(newImageFileString);
         HttpURLConnection connection = null;
         BufferedImage image = null;
@@ -53,10 +53,10 @@ public class EncryptLSB {
 
     /**
      * Copies the image into a new buffered image
-     * Color Model determines how colors are represented within AWT
-     *
+     * Color Model determines how colors are represented within AWT in integer formats(RGB)
+     * WriteableRaster provides pixel writing capabilities (top right to bottom left)
      * @param image
-     * @return
+     * @return copy of Buffer image
      */
     private static BufferedImage GetImageToEncrypt(BufferedImage image) {
         ColorModel colorModel = image.getColorModel();
@@ -66,9 +66,10 @@ public class EncryptLSB {
     }
 
     /**
-     * Gets two dimensional array of colors from the image to encrypt
+     * Gets 2D array of colors from the image to encrypt (Pixel class)
+     * loop through 2D array to get each pixel
      * @param imageToEncrypt
-     * @return
+     * @return pixels (instance of Pixel[])
      */
     private static Pixel[] GetPixelArray(BufferedImage imageToEncrypt){
         int height = imageToEncrypt.getHeight();
@@ -85,8 +86,11 @@ public class EncryptLSB {
         return pixels;
     };
 
-    /*
-     * Converting the message into binary.
+    /**
+     * Converting the message into binary
+     * converts message to ascii then to binary
+     * @param message
+     * @return binary
      */
     private static String[] ConvertMessageToBinary(String message) {
         int[] messageInAscii = ConvertMessageToAscii(message);
@@ -94,8 +98,10 @@ public class EncryptLSB {
         return binary;
     }
 
-    /*
-     * Converting the message into ASCII.
+    /**
+     * Converting the message into ASCII
+     * @param message
+     * @return converts char to ascii
      */
     private static int[] ConvertMessageToAscii(String message) {
         int[] messageCharactersInAscii = new int[message.length()];
@@ -106,8 +112,10 @@ public class EncryptLSB {
         return messageCharactersInAscii;
     }
 
-    /*
-     * Converting the ASCII code to Binary.
+    /**
+     * Converting the ASCII code to Binary
+     * @param messageInAscii
+     * @return message in binary
      */
     private static String[] ConvertAsciiToBinary(int[] messageInAscii) {
         String[] messageInBinary = new String[messageInAscii.length];
@@ -118,8 +126,11 @@ public class EncryptLSB {
         return messageInBinary;
     }
 
-    /*
-     * Left padding the binary value with zeros to make an 8 digit string.
+    /**
+     * ASCII only gives us 7 binary bits so we need to add padded 0
+     * Left padding the binary value with zeros to make an 8 digit string
+     * @param value
+     * @return string
      */
     private static String LeftPadZeros(String value) {
         StringBuilder paddedValue = new StringBuilder("00000000");
@@ -131,8 +142,10 @@ public class EncryptLSB {
     }
 
 
-    /*
-     * Encoding the message in the pixels.
+    /**
+     * Encoding the message in the pixels
+     * @param pixels
+     * @param messageBinary
      */
     private static void EncodeMessageBinaryInPixels(Pixel[] pixels, String[] messageBinary) {
         int pixelIndex = 0;
@@ -147,6 +160,13 @@ public class EncryptLSB {
         }
     }
 
+    /**
+     * method that changes pixel colors
+     * use boolean to check if it's last character
+     * @param messageBinary
+     * @param pixels
+     * @param isLastCharacter
+     */
     private static void ChangePixelsColor(String messageBinary, Pixel[] pixels, boolean isLastCharacter) {
         int messageBinaryIndex = 0;
         for(int i =0; i < pixels.length-1; i++) {
@@ -166,6 +186,12 @@ public class EncryptLSB {
         }
     }
 
+    /**
+     * Turn pixels(RGB) to integer value to binary string and change LSB of the binary to message binary
+     * @param pixel
+     * @param messageBinaryChars
+     * @return pixel binary as array of strings
+     */
     private static String[] GetPixelsRGBBinary(Pixel pixel, char[] messageBinaryChars) {
         String[] pixelRGBBinary = new String[3];
         pixelRGBBinary[0] = ChangePixelBinary(Integer.toBinaryString(pixel.getColor().getRed()), messageBinaryChars[0]);
@@ -174,22 +200,40 @@ public class EncryptLSB {
         return pixelRGBBinary;
     }
 
+    /**
+     * changes LSB of binary string to message character
+     * @param pixelBinary
+     * @param messageBinaryChar
+     * @return string
+     */
     private static String ChangePixelBinary(String pixelBinary, char messageBinaryChar) {
         StringBuilder sb = new StringBuilder(pixelBinary);
         sb.setCharAt(pixelBinary.length()-1, messageBinaryChar);
         return sb.toString();
     }
 
+    /**
+     * Gets new pixel color, takes in string array
+     * parses string as int, need to add 2
+     * @param colorBinary
+     * @return
+     */
     private static Color GetNewPixelColor(String[] colorBinary) {
         return new Color(Integer.parseInt(colorBinary[0], 2), Integer.parseInt(colorBinary[1], 2), Integer.parseInt(colorBinary[2], 2));
     }
 
+    /**
+     * replaces pixels in the buffered image (message encoded)
+     * @param newPixels
+     * @param newImage
+     */
     private static void ReplacePixelsInNewBufferedImage(Pixel[] newPixels, BufferedImage newImage) {
         for(int i = 0; i < newPixels.length; i++) {
             newImage.setRGB(newPixels[i].getX(), newPixels[i].getY(), newPixels[i].getColor().getRGB());
         }
     };
 
+    //This part will change to save in DB
     private static void SaveNewFile(BufferedImage newImage, File newImageFile) {
         try {
             ImageIO.write(newImage, "png", newImageFile);

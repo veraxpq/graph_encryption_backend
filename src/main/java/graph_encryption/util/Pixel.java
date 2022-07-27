@@ -3,7 +3,9 @@ package graph_encryption.util;
 
 import java.awt.Color;
 
-
+/**
+ * Pixel class to take care of pixel methods
+ */
 public class Pixel {
     private int x;
     private int y;

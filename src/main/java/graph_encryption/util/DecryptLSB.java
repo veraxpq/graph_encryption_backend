@@ -16,6 +16,11 @@ import javax.swing.JFileChooser;
 
 @Component
 public class DecryptLSB {
+    /**
+     * Decrypt method to decrypt secret message
+     * @param imageUrl
+     * @return string message
+     */
     public static String Decrypt(String imageUrl) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 //        String newImageFileString = directory + "\\export.png";
@@ -39,6 +44,11 @@ public class DecryptLSB {
         return "decrypted message";
     }
 
+    /**
+     * Gets pixel array to return pixels
+     * @param imageToEncrypt
+     * @return pixels
+     */
     private static Pixel[] GetPixelArray(BufferedImage imageToEncrypt){
         int height = imageToEncrypt.getHeight();
         int width = imageToEncrypt.getWidth();
@@ -55,6 +65,12 @@ public class DecryptLSB {
         return pixels;
     };
 
+    /**
+     * Decode message from pixels, keeps iterating through pixels array
+     * appends message to end of message
+     * @param pixels
+     * @return string message
+     */
     private static String DecodeMessageFromPixels(Pixel[] pixels) {
         boolean completed = false;
         int pixelArrayIndex = 0;
@@ -73,6 +89,11 @@ public class DecryptLSB {
         return messageBuilder.toString();
     }
 
+    /**
+     * converts pixels to character
+     * @param pixelsToRead
+     * @return
+     */
     private static char ConvertPixelsToCharacter(Pixel[] pixelsToRead) {
         ArrayList<String> binaryValues = new ArrayList<String>();
         for(int i = 0; i < pixelsToRead.length; i++) {
@@ -84,6 +105,11 @@ public class DecryptLSB {
         return ConvertBinaryValuesToCharacter(binaryValues);
     }
 
+    /**
+     * pixel integers change to binary
+     * @param pixel
+     * @return string values
+     */
     private static String[] TurnPixelIntegersToBinary(Pixel pixel) {
         String[] values = new String[3];
         values[0] = Integer.toBinaryString(pixel.getColor().getRed());
@@ -92,6 +118,11 @@ public class DecryptLSB {
         return values;
     }
 
+    /**
+     * check if is end of message
+     * @param pixel
+     * @return boolean
+     */
     private static boolean IsEndOfMessage(Pixel pixel) {
         if(TurnPixelIntegersToBinary(pixel)[2].endsWith("1")) {
             return false;
@@ -99,6 +130,11 @@ public class DecryptLSB {
         return true;
     }
 
+    /**
+     * Converts binary values to characters
+     * @param binaryValues
+     * @return
+     */
     private static char ConvertBinaryValuesToCharacter(ArrayList<String> binaryValues) {
         StringBuilder endBinary = new StringBuilder("");
         for(int i = 0; i < binaryValues.size()-1; i++) {
@@ -110,6 +146,11 @@ public class DecryptLSB {
         return (char) ascii;
     }
 
+    /**
+     * removes the padded zeroes that we added in encrypt
+     * @param endBinary
+     * @return string
+     */
     private static String RemovePaddedZeros(String endBinary) {
         StringBuilder builder = new StringBuilder(endBinary);
         int paddedZeros = 0;
