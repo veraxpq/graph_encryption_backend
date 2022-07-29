@@ -40,6 +40,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public String encrypt(String imageUrl, String message) {
         String encryptedImageUrl = EncryptLSB.Encrypt(imageUrl, message);
+//        imageInfoMapper.updateByExampleSelective()
         return encryptedImageUrl;
     }
 

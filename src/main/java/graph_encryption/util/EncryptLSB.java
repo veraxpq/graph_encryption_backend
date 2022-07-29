@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
-@Component
 public class EncryptLSB {
     /**
      * Encrypt method encrypts the LSB of the image pixels
@@ -46,11 +46,28 @@ public class EncryptLSB {
         String[] messageInBinary = ConvertMessageToBinary(message);
         EncodeMessageBinaryInPixels(pixels, messageInBinary);
         ReplacePixelsInNewBufferedImage(pixels, image);
+        String encryptedUrl = saveInDB(image);
+        return encryptedUrl;
 //        SaveNewFile(image, newImageFile); //**Write into DB
-        return "encrypted image url";
+
+//        return "encrypted image url";
 
     }
 
+    private static String saveInDB(BufferedImage image) {
+        // create a file name based on the current time
+        Date date = new Date();
+        String fileName = "image" + date.getTime();
+        File file = new File(fileName);
+        try {
+            ImageIO.write(image, "PNG", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Uploader uploader = new Uploader();
+        String url = uploader.upload(file);
+        return url;
+    }
     /**
      * Copies the image into a new buffered image
      * Color Model determines how colors are represented within AWT in integer formats(RGB)
