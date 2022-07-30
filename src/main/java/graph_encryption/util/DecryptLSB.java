@@ -39,9 +39,9 @@ public class DecryptLSB {
         }
 //        image = ImageIO.read(imageFile);
         Pixel[] pixels = GetPixelArray(image);
-        System.out.println(DecodeMessageFromPixels(pixels));
+        String message = DecodeMessageFromPixels(pixels);
 
-        return DecodeMessageFromPixels(pixels) ;
+        return message;
     }
 
 

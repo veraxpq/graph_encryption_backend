@@ -77,12 +77,14 @@ public class ImageServiceImpl implements ImageService {
         //decrypt the image
         String message = DecryptLSB.Decrypt(url);
         if (!message.isEmpty()) {
-            int len = message.charAt(0);
-            if (len < message.length() - 1) {
-                if (password.equals(message.substring(1, len + 1))) {
-                    JSONObject obj = new JSONObject();
-                    obj.put("message", message.substring(len));
-                    return new Result<>(obj, 1);
+            if (Character.isDigit(message.charAt(0))) {
+                int len = message.charAt(0) - '0';
+                if (len < message.length() - 1) {
+                    if (password.equals(message.substring(1, len + 1))) {
+                        JSONObject obj = new JSONObject();
+                        obj.put("message", message.substring(len + 1));
+                        return new Result<>(obj, 1);
+                    }
                 }
             }
         }
