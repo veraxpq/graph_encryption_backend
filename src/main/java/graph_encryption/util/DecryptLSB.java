@@ -41,8 +41,9 @@ public class DecryptLSB {
         Pixel[] pixels = GetPixelArray(image);
         System.out.println(DecodeMessageFromPixels(pixels));
 
-        return "decrypted message";
+        return DecodeMessageFromPixels(pixels) ;
     }
+
 
     /**
      * Gets pixel array to return pixels
