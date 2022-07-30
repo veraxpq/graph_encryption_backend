@@ -19,12 +19,6 @@ public class ImageController {
     private ImageService imageService;
 
     @VerifyToken
-    @PostMapping(value = "/image")
-    public Result<JSONObject> postImage(@RequestBody JSONObject image) {
-        return new Result<>(imageService.save(image), 1);
-    }
-
-    @VerifyToken
     @GetMapping(value = "/getImageList")
     public Result<JSONArray> getUserInfo(@RequestParam("userId") int userId) {
         return new Result<>(imageService.getImagesByUserId(userId), 1);
@@ -37,14 +31,7 @@ public class ImageController {
 
     @PostMapping("/decrypt")
     public Result<JSONObject> decryptInput(@RequestBody JSONObject imageInfo) {
-        System.out.println("Decrypted successfully");
-        String url = imageInfo.getString("url");
-        String password = imageInfo.getString("password");
-        int imageId = imageInfo.getInteger("imageId");
-        String message = imageService.decrypt(url, password, imageId);
-        JSONObject obj = new JSONObject();
-        obj.put("message", message);
-        return new Result<>(obj, 1);
+        return imageService.decrypt(imageInfo);
     }
 
 }

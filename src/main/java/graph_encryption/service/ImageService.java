@@ -27,5 +27,5 @@ public interface ImageService {
 
     Result<JSONObject> encrypt(JSONObject image);
 
-    String decrypt(String imageUrl, String password, int imageId);
+    Result<JSONObject> decrypt(JSONObject imageInfo);
 }
