@@ -2,6 +2,7 @@ package graph_encryption.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import graph_encryption.common.Result;
 
 
 /**
@@ -24,7 +25,7 @@ public interface ImageService {
      */
     JSONArray getImagesByUserId(int userId);
 
-    String encrypt(String imageUrl, String message);
+    Result<JSONObject> encrypt(JSONObject image);
 
     String decrypt(String imageUrl, String password, int imageId);
 }

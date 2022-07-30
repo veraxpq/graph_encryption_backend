@@ -32,13 +32,7 @@ public class ImageController {
 
     @PostMapping("/encrypt")
     public Result<JSONObject> encryptInput(@RequestBody JSONObject imageInfo) {
-//        System.out.println("Encrypted successfully");
-        String url = imageInfo.getString("url");
-        String message = imageInfo.getString("message");
-        String encryptedImageUrl = imageService.encrypt(url, message);
-        JSONObject obj = new JSONObject();
-        obj.put("encrypted_image_url", encryptedImageUrl);
-        return new Result<>(obj, 1);
+        return imageService.encrypt(imageInfo);
     }
 
     @PostMapping("/decrypt")
