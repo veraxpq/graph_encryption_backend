@@ -25,7 +25,7 @@ public class EncryptLSB {
      */
     public static String Encrypt(String imageUrl, String message) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-//        String newImageFileString = "/Users/chenyian261/Documents/NEUSummer/" + "\\export.png";
+//        String newImageFileString = "/Users/chenyian261/Documents/NEUSummer/CS6760/" + "\\export.png";
 //        File newImageFile = new File(newImageFileString);
         HttpURLConnection connection = null;
         BufferedImage image = null;
@@ -40,15 +40,16 @@ public class EncryptLSB {
             e.printStackTrace();
         }
 
-        //            image = ImageIO.read(imageFile);
+//        image = ImageIO.read(imageFile);
         BufferedImage imageToEncrypt = GetImageToEncrypt(image); //use a buffer copy of the original image
         Pixel[] pixels = GetPixelArray(imageToEncrypt);
         String[] messageInBinary = ConvertMessageToBinary(message);
         EncodeMessageBinaryInPixels(pixels, messageInBinary);
         ReplacePixelsInNewBufferedImage(pixels, image);
         String encryptedUrl = saveInDB(image);
-        return encryptedUrl;
 //        SaveNewFile(image, newImageFile); //**Write into DB
+        return encryptedUrl;
+
 
 //        return "encrypted image url";
 
@@ -57,13 +58,14 @@ public class EncryptLSB {
     private static String saveInDB(BufferedImage image) {
         // create a file name based on the current time
         Date date = new Date();
-        String fileName = "image" + date.getTime();
+        String fileName = "image" + date.getTime() + ".png";
         File file = new File(fileName);
         try {
             ImageIO.write(image, "PNG", file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Uploader uploader = new Uploader();
         String url = uploader.upload(file);
         return url;

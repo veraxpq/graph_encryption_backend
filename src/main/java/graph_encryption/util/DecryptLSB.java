@@ -23,7 +23,7 @@ public class DecryptLSB {
      */
     public static String Decrypt(String imageUrl) {
 //        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-//        String newImageFileString = directory + "\\export.png";
+//        String newImageFileString = "/Users/chenyian261/Documents/NEUSummer/CS6760/"+ "\\export.png";
 //        File newImageFile = new File(newImageFileString);
         HttpURLConnection connection = null;
         BufferedImage image = null;
@@ -37,7 +37,7 @@ public class DecryptLSB {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //            image = ImageIO.read(imageFile);
+//        image = ImageIO.read(imageFile);
         Pixel[] pixels = GetPixelArray(image);
         System.out.println(DecodeMessageFromPixels(pixels));
 
