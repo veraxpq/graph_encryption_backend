@@ -67,6 +67,7 @@ public class UserController {
      */
     @PostMapping(value = "/login")
     public Result<JSONObject> login(@RequestBody JSONObject user) {
+        System.out.println("@tom logging in");
         return userService.login(user);
     }
 
