@@ -10,25 +10,54 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * This class is the controller for imageInfo, providing apis to operate on imageInfo
+ */
 @RestController
 @RequestMapping("/en-graph")
 @Service
 public class ImageController {
 
-    @Autowired
     private ImageService imageService;
 
-    @VerifyToken
-    @GetMapping(value = "/getImageList")
-    public Result<JSONArray> getUserInfo(@RequestParam("userId") int userId) {
-        return new Result<>(imageService.getImagesByUserId(userId), 1);
+    /**
+     * This is the constructor for ImageController
+     *
+     * @param imageService given imageService
+     */
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
     }
 
+    /**
+     * This method get an image list with the given userId.
+     *
+     * @param userId given userId
+     * @return an image list
+     */
+    @VerifyToken
+    @GetMapping(value = "/getImageList")
+    public Result<JSONArray> getImageList(@RequestParam("userId") int userId) {
+        return imageService.getImagesByUserId(userId);
+    }
+
+    /**
+     * This method encrypts an image with the given image info
+     *
+     * @param imageInfo given image info
+     * @return encrypted image info
+     */
     @PostMapping("/encrypt")
     public Result<JSONObject> encryptInput(@RequestBody JSONObject imageInfo) {
         return imageService.encrypt(imageInfo);
     }
 
+    /**
+     * This method decrypts an image.
+     *
+     * @param imageInfo given image info
+     * @return decrypted message from the image
+     */
     @PostMapping("/decrypt")
     public Result<JSONObject> decryptInput(@RequestBody JSONObject imageInfo) {
         return imageService.decrypt(imageInfo);

@@ -26,34 +26,30 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public JSONObject getUserInfo(int id) {
+    public Result<JSONObject> getUserInfo(int id) {
         UserInfo userInfos = userInfoMapper.selectByPrimaryKey(id);
-        return (JSONObject) JSONObject.toJSON(userInfos);
+        userInfos.setPassword(null);
+        JSONObject job = (JSONObject) JSONObject.toJSON(userInfos);
+        return new Result<>(job, 1);
     }
 
     @Override
-    public void updateUserInfo(JSONObject user) {
+    public Result updateUserInfo(JSONObject user) {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
         UserInfoExample example = new UserInfoExample();
         UserInfoExample.Criteria criteria = example.createCriteria();
         criteria.andUserIdEqualTo(userInfo.getUserId());
         userInfoMapper.updateByExampleSelective(userInfo, example);
+        return new Result("", 1);
     }
 
     @Override
-    public void deleteUser(int id) {
-        UserInfoExample example = new UserInfoExample();
-        UserInfoExample.Criteria criteria = example.createCriteria();
-        criteria.andUserIdEqualTo(id);
-        userInfoMapper.deleteByExample(example);
-    }
-
-    @Override
-    public void createUser(JSONObject user) throws DuplicateKeyException {
+    public Result createUser(JSONObject user) throws DuplicateKeyException {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
         String passWdHash = CipherHelper.getSHA256(userInfo.getPassword());
         userInfo.setPassword(passWdHash);
         userInfoMapper.insert(userInfo);
+        return new Result("", 1);
     }
 
     @Override

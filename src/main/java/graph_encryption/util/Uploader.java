@@ -47,9 +47,9 @@ public class Uploader
         HttpURLConnection conn = getHttpConnection(UPLOAD_API_URL);
         writeToConnection(conn, "image=" + toBase64(file));
         String response = getResponse(conn);
-        JSONObject job = (JSONObject) JSONObject.parse(response);
-        if (job.getBoolean("success")) {
-            return job.getJSONObject("data").getString("link");
+        JSONObject loginJB = (JSONObject) JSONObject.parse(response);
+        if (loginJB.getBoolean("success")) {
+            return loginJB.getJSONObject("data").getString("link");
         } else {
             throw new WebException(StatusCode.SERVICE_UNAVAILABLE);
         }

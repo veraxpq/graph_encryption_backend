@@ -22,27 +22,20 @@ public interface UserService {
      * @param id given user id
      * @return user info
      */
-    JSONObject getUserInfo(int id);
+    Result<JSONObject> getUserInfo(int id);
 
     /**
      * This method updates user info with the given user info json.
      *
      * @param user given user info
      */
-    void updateUserInfo(JSONObject user);
-
-    /**
-     * This method delete user with given user id.
-     *
-     * @param id given user id
-     */
-    void deleteUser(int id);
+    Result updateUserInfo(JSONObject user);
 
     /**
      * This method creates a new user with the given user info.
      *
      * @param user given user info
      */
-    void createUser(JSONObject user);
+    Result createUser(JSONObject user);
 
 }

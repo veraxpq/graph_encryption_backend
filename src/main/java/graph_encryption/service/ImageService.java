@@ -23,7 +23,7 @@ public interface ImageService {
      * @param userId given userId
      * @return the image retrieved from database
      */
-    JSONArray getImagesByUserId(int userId);
+    Result<JSONArray> getImagesByUserId(int userId);
 
     Result<JSONObject> encrypt(JSONObject image);
 

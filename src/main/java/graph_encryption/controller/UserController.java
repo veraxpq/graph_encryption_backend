@@ -1,18 +1,12 @@
 package graph_encryption.controller;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import graph_encryption.common.Result;
 import graph_encryption.service.UserService;
-import com.alibaba.fastjson.JSONObject;
 import graph_encryption.wrapper.VerifyToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
 
 /**
  * This class represents the controller of the operations related to users.
@@ -22,8 +16,12 @@ import java.text.ParseException;
 @Service
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UserController(final UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * This method get user info with the given user id.
@@ -32,10 +30,9 @@ public class UserController {
      * @return user info
      */
     @VerifyToken
-    @GetMapping(value="/user")
+    @GetMapping(value = "/user")
     public Result<JSONObject> getUserInfo(@RequestParam("id") int id) {
-        JSONObject user = userService.getUserInfo(id);
-        return new Result<>(user, 1);
+        return userService.getUserInfo(id);
     }
 
     /**
@@ -47,8 +44,7 @@ public class UserController {
     @VerifyToken
     @PutMapping(value = "/user")
     public Result updateUserInfo(@RequestBody JSONObject user) {
-        userService.updateUserInfo(user);
-        return new Result("", 1);
+        return userService.updateUserInfo(user);
     }
 
     /**
@@ -59,21 +55,7 @@ public class UserController {
      */
     @PostMapping(value = "/user")
     public Result createUser(@RequestBody JSONObject user) {
-        userService.createUser(user);
-        return new Result("", 1);
-    }
-
-    /**
-     * This method deletes user with the given user id.
-     *
-     * @param id given user id
-     * @return if the operation succeeds
-     */
-    @VerifyToken
-    @DeleteMapping(value = "/user")
-    public Result deleteUser(@RequestParam("id") int id) {
-        userService.deleteUser(id);
-        return new Result("", 1);
+        return userService.createUser(user);
     }
 
     /**
