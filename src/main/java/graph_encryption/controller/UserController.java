@@ -18,6 +18,7 @@ import java.text.ParseException;
  * This class represents the controller of the operations related to users.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/en-graph")
 @Service
 public class UserController {
