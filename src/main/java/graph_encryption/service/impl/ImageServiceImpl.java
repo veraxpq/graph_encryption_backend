@@ -33,12 +33,12 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public JSONArray getImagesByUserId(int userId) {
+    public Result<JSONArray> getImagesByUserId(int userId) {
         ImageInfoExample example = new ImageInfoExample();
         ImageInfoExample.Criteria criteria = example.createCriteria();
         criteria.andUserIdEqualTo(userId);
         List<ImageInfo> imageInfos = imageInfoMapper.selectByExample(example);
-        return (JSONArray) JSONArray.toJSON(imageInfos);
+        return new Result<>((JSONArray) JSONArray.toJSON(imageInfos), 1);
     }
 
     @Override
