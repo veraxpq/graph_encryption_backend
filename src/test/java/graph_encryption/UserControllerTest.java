@@ -146,4 +146,16 @@ public class UserControllerTest {
         final Result result = userController.createUser(userInfo);
         Assert.assertEquals(expected, result);
     }
+
+    /**
+     * test createUser() method when email exists in db
+     */
+    @Test
+    public void testCreateUserWithDuplicateEmail() {
+        Result<JSONObject> expected = new Result("Email has been registered.", 1);
+        Mockito.when(userService.createUser(userInfo)).thenReturn(expected);
+        final Result result = userController.createUser(userInfo);
+        Assert.assertEquals(expected, result);
+    }
+
 }

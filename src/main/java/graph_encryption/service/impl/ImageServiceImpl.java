@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This class represents the implementation of ImageService interface.
+ */
 @Service
 public class ImageServiceImpl implements ImageService {
 
@@ -84,6 +87,10 @@ public class ImageServiceImpl implements ImageService {
                         JSONObject obj = new JSONObject();
                         obj.put("message", message.substring(len + 1));
                         return new Result<>(obj, 1);
+                    } else {
+                        JSONObject obj = new JSONObject();
+                        obj.put("error", "The password is wrong.");
+                        return new Result<>(obj, 0);
                     }
                 }
             }

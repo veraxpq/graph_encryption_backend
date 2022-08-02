@@ -2,6 +2,9 @@ package graph_encryption.domain.model;
 
 import java.util.Date;
 
+/**
+ * This class represents the ImageInfo table in the database.
+ */
 public class ImageInfo {
     private Integer imageId;
 

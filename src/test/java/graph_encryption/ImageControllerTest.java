@@ -101,4 +101,38 @@ public class ImageControllerTest {
         Assert.assertEquals(expected, result);
     }
 
+    /**
+     * test decryptInput() when the given image does not contain a message
+     */
+    @Test
+    public void testDecryptInputWithEmptyImage() {
+        JSONObject image = new JSONObject();
+        image.put("password", "1111");
+        image.put("url", "https://encrypted");
+
+        JSONObject encryptReturn = new JSONObject();
+        encryptReturn.put("message", "");
+        Result<JSONObject> expected = new Result(encryptReturn, 1);
+        Mockito.when(imageService.decrypt(image)).thenReturn(expected);
+        final Result result = imageController.decryptInput(image);
+        Assert.assertEquals(expected, result);
+    }
+
+    /**
+     * test decryptInput() when the password is wrong
+     */
+    @Test
+    public void testDecryptInputWithWrongPassword() {
+        JSONObject image = new JSONObject();
+        image.put("password", "1111");
+        image.put("url", "https://encrypted");
+
+        JSONObject encryptReturn = new JSONObject();
+        encryptReturn.put("error", "The password is wrong.");
+        Result<JSONObject> expected = new Result(encryptReturn, 1);
+        Mockito.when(imageService.decrypt(image)).thenReturn(expected);
+        final Result result = imageController.decryptInput(image);
+        Assert.assertEquals(expected, result);
+    }
+
 }

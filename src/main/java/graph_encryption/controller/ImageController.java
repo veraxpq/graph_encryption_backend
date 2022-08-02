@@ -47,6 +47,7 @@ public class ImageController {
      * @param imageInfo given image info
      * @return encrypted image info
      */
+    @VerifyToken
     @PostMapping("/encrypt")
     public Result<JSONObject> encryptInput(@RequestBody JSONObject imageInfo) {
         return imageService.encrypt(imageInfo);
@@ -58,6 +59,7 @@ public class ImageController {
      * @param imageInfo given image info
      * @return decrypted message from the image
      */
+    @VerifyToken
     @PostMapping("/decrypt")
     public Result<JSONObject> decryptInput(@RequestBody JSONObject imageInfo) {
         return imageService.decrypt(imageInfo);

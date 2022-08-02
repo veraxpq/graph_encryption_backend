@@ -1,5 +1,8 @@
 package graph_encryption.domain.model;
 
+/**
+ * This class represents the UserInfo table in the database.
+ */
 public class UserInfo {
     private Integer userId;
 

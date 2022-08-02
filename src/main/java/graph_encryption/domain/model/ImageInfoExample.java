@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This class represents the examples can be applied to the ImageInfo object.
+ */
 public class ImageInfoExample {
     protected String orderByClause;
 
