@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  * This class is the controller for imageInfo, providing apis to operate on imageInfo
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/en-graph")
 @Service
 public class ImageController {

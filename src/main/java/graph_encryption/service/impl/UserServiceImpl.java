@@ -54,6 +54,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result<JSONObject> login(JSONObject user) {
+
+        System.out.println("@tom hihiih");
         UserLoginInfo userLoginInfo = user.toJavaObject(UserLoginInfo.class);
         UserInfoExample example = new UserInfoExample();
         UserInfoExample.Criteria criteria = example.createCriteria();

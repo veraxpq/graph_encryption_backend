@@ -79,6 +79,7 @@ public class ImageServiceImpl implements ImageService {
 
         //decrypt the image
         String message = DecryptLSB.Decrypt(url);
+        System.out.println(message);
         if (!message.isEmpty()) {
             if (Character.isDigit(message.charAt(0))) {
                 int len = message.charAt(0) - '0';

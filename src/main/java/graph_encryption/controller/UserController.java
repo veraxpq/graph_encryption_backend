@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * This class represents the controller of the operations related to users.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/en-graph")
 @Service
 public class UserController {
@@ -66,6 +67,7 @@ public class UserController {
      */
     @PostMapping(value = "/login")
     public Result<JSONObject> login(@RequestBody JSONObject user) {
+        System.out.println("@tom logging in");
         return userService.login(user);
     }
 
