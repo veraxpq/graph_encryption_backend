@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result<JSONObject> getUserInfo(int id) {
         UserInfo userInfos = userInfoMapper.selectByPrimaryKey(id);
+        if (userInfos == null) {
+            JSONObject error = new JSONObject();
+            error.put("error", "Illegal userId");
+            return new Result<>(error, 0);
+        }
         userInfos.setPassword(null);
         JSONObject job = (JSONObject) JSONObject.toJSON(userInfos);
         return new Result<>(job, 1);
@@ -44,11 +49,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result createUser(JSONObject user) throws DuplicateKeyException {
+    public Result createUser(JSONObject user) {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
         String passWdHash = CipherHelper.getSHA256(userInfo.getPassword());
         userInfo.setPassword(passWdHash);
-        userInfoMapper.insert(userInfo);
+        try {
+            userInfoMapper.insert(userInfo);
+        } catch (DuplicateKeyException e) {
+            JSONObject error = new JSONObject();
+            error.put("error", "This email already registered, please login.");
+            return new Result(error, 0);
+        }
         return new Result("", 1);
     }
 
