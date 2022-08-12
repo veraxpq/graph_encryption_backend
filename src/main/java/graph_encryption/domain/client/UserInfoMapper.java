@@ -6,9 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-/**
- * This is the interface of UserInfoMapper, which can be called to operate on database.
- */
 public interface UserInfoMapper {
     long countByExample(UserInfoExample example);
 

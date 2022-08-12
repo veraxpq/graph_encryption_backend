@@ -38,7 +38,8 @@ public class VerifyTokenAOPInterceptor {
     @Before("pointcut()")
     public void before(JoinPoint point) {
 
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.
+                getRequestAttributes()).getRequest();
 
         final String token = request.getHeader("Authorization");
         if (token == null) {
@@ -55,6 +56,5 @@ public class VerifyTokenAOPInterceptor {
 
         request.setAttribute("password", password);
         request.setAttribute("email", email);
-
     }
 }

@@ -5,14 +5,9 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
-
 import org.junit.runners.MethodSorters;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -6,8 +6,6 @@
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="original_image_url" jdbcType="VARCHAR" property="originalImageUrl" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="message" jdbcType="VARCHAR" property="message" />
     <result column="encrypted_image_url" jdbcType="VARCHAR" property="encryptedImageUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    image_id, date, original_image_url, user_id, password, message, encrypted_image_url
+    image_id, date, original_image_url, user_id, encrypted_image_url
   </sql>
   <select id="selectByExample" parameterType="graph_encryption.domain.model.ImageInfoExample" resultMap="BaseResultMap">
     select
@@ -106,11 +104,9 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into image_info (date, original_image_url, user_id, 
-      password, message, encrypted_image_url
-      )
+      encrypted_image_url)
     values (#{date,jdbcType=TIMESTAMP}, #{originalImageUrl,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{password,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{encryptedImageUrl,jdbcType=VARCHAR}
-      )
+      #{encryptedImageUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="graph_encryption.domain.model.ImageInfo">
     <selectKey keyProperty="imageId" order="AFTER" resultType="java.lang.Integer">
@@ -127,12 +123,6 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="message != null">
-        message,
-      </if>
       <if test="encryptedImageUrl != null">
         encrypted_image_url,
       </if>
@@ -146,12 +136,6 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="message != null">
-        #{message,jdbcType=VARCHAR},
       </if>
       <if test="encryptedImageUrl != null">
         #{encryptedImageUrl,jdbcType=VARCHAR},
@@ -179,12 +163,6 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.message != null">
-        message = #{record.message,jdbcType=VARCHAR},
-      </if>
       <if test="record.encryptedImageUrl != null">
         encrypted_image_url = #{record.encryptedImageUrl,jdbcType=VARCHAR},
       </if>
@@ -199,8 +177,6 @@
       date = #{record.date,jdbcType=TIMESTAMP},
       original_image_url = #{record.originalImageUrl,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
-      password = #{record.password,jdbcType=VARCHAR},
-      message = #{record.message,jdbcType=VARCHAR},
       encrypted_image_url = #{record.encryptedImageUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -218,12 +194,6 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="message != null">
-        message = #{message,jdbcType=VARCHAR},
-      </if>
       <if test="encryptedImageUrl != null">
         encrypted_image_url = #{encryptedImageUrl,jdbcType=VARCHAR},
       </if>
@@ -235,8 +205,6 @@
     set date = #{date,jdbcType=TIMESTAMP},
       original_image_url = #{originalImageUrl,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
-      password = #{password,jdbcType=VARCHAR},
-      message = #{message,jdbcType=VARCHAR},
       encrypted_image_url = #{encryptedImageUrl,jdbcType=VARCHAR}
     where image_id = #{imageId,jdbcType=INTEGER}
   </update>

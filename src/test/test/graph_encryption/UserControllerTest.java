@@ -46,7 +46,7 @@ public class UserControllerTest {
     }
 
     /**
-     *     test login() when the given email and password are correct
+     * test login() when the given email and password are correct
      */
     @Test
     public void testLogin() {
@@ -64,7 +64,6 @@ public class UserControllerTest {
         JSONObject userInfoWithWrongEmail = new JSONObject();
         userInfo.put("email", "hii@gmail.com");
         userInfo.put("password", "asdlkfjasd");
-
         JSONObject loginJB = new JSONObject();
         loginJB.put("data", "The password is not correct.");
         Result<JSONObject> expected = new Result(loginJB, 0);
@@ -81,7 +80,6 @@ public class UserControllerTest {
         JSONObject userInfoWithWrongEmail = new JSONObject();
         userInfo.put("email", "hi@gmail.com");
         userInfo.put("password", "asdlkfjasdd");
-
         JSONObject loginJB = new JSONObject();
         loginJB.put("data", "The password is not correct.");
         Result<JSONObject> expected = new Result(loginJB, 0);

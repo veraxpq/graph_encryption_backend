@@ -2,9 +2,6 @@ package graph_encryption.domain.model;
 
 import java.util.Date;
 
-/**
- * This class represents the ImageInfo table in the database.
- */
 public class ImageInfo {
     private Integer imageId;
 
@@ -13,10 +10,6 @@ public class ImageInfo {
     private String originalImageUrl;
 
     private Integer userId;
-
-    private String password;
-
-    private String message;
 
     private String encryptedImageUrl;
 
@@ -50,22 +43,6 @@ public class ImageInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getEncryptedImageUrl() {

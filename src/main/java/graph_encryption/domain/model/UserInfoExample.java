@@ -3,9 +3,6 @@ package graph_encryption.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class represents the examples can be applied to the UserInfo object.
- */
 public class UserInfoExample {
     protected String orderByClause;
 

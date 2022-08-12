@@ -34,7 +34,7 @@ public class ImageController {
      * This method get an image list with the given userId.
      *
      * @param userId given userId
-     * @return an image list
+     * @return an image list uploaded by the given user
      */
     @VerifyToken
     @GetMapping(value = "/getImageList")
