@@ -86,7 +86,7 @@ public class EncryptLSB {
 
     /**
      * Gets 2D array of colors from the image to encrypt (Pixel class)
-     * loop through 2D array to get each pixel
+     * loop through 2D array to get each pixel, transform the 2D pixel array into 1D array (pixels)
      * @param imageToEncrypt
      * @return pixels (instance of Pixel[])
      */
@@ -119,6 +119,7 @@ public class EncryptLSB {
 
     /**
      * Converting the message into ASCII
+     * iterates through each character of the message and gets the ASCII
      * @param message
      * @return converts char to ascii
      */
@@ -133,6 +134,7 @@ public class EncryptLSB {
 
     /**
      * Converting the ASCII code to Binary
+     * loops through the ASCII and translate to binary
      * @param messageInAscii
      * @return message in binary
      */
@@ -146,7 +148,7 @@ public class EncryptLSB {
     }
 
     /**
-     * ASCII only gives us 7 binary bits so we need to add padded 0
+     * ASCII only gives us 7 binary bits (because only 127 characters) so we need to add padded 0
      * Left padding the binary value with zeros to make an 8 digit string
      * @param value
      * @return string

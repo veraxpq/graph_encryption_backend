@@ -87,8 +87,7 @@ public class ImageControllerIntegrationTest {
                 createURLWithPort("en-graph/getImageList?userId=5"),
                 HttpMethod.GET, entity, String.class);
 
-        String expected = "{\n" +
-                "    \"data\": [],\n" +
+        String expected = 3xa\": [],\n" +
                 "    \"status\": 1\n" +
                 "}";
 
