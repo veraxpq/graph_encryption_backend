@@ -32,9 +32,26 @@ The "mode" package are setters and getters for information related to login impl
 The "util" package includes our CipherHelpers, which is an implementation of our project security, DecryptLSB and EncryptLSB classes for the steganographic implementations, HttpUtils class that send request to url, JWTUtils class for realized security, Pixel class that allows the EncryptLSB and DecryptLSB methods to manipulate pixels of the stego image object, a StatusCode class for our HTTP request server status, an Uploader class that uses a third party API to upload image files that return URLs for the EncryptLSB class to read, and WebException class under the Apache License that handles and shows http errors. 
 We have a "wrapper" package with a VerifyToken class and bean that intercepts to add token verification before our backend API gets called. 
 
+### Token verification for security
+
+We created a token by using HS256 algorithm to generate an encrypted string containing the information of email, password, and the login time. 
+HS256 (HMAC with SHA-256) is a symmetric keyed hashing algorithm that uses one secret key. The same key is used to sign a JSON Web Token and allow verification that signature.
+We created a “before” type pointcut to be executed before a function is called. And apply this pointcut to all APIs except login and register.
+After login, frontend needs to put the token in the header for each request.  
+We will verify if the token is legal before handling the request.
+
+
 ## Backend Tests
 
 The backend tests are in the "test" folder, with unit tests for multiple ImageController methods and UserController methods, as well as integration tests for these methods.
+
+## Database
+
+This project uses MySQL for Database, and Mybatis data persistence framework to manipulate our data from Springboot. The stego images are stored in the DB and sent to the frontend when the receiver enters a password to decode the image message.
+To protect users’ information, before we store passwords into database, we encrypt the password using SHA256 algorithm. The SHA 256 (Secure Hash Algorithm 256) is a part of the SHA 2 family algorithms. It takes the original text and passes it through a hash function that performs mathematical operations, and turn the text into 256 bits output string.
+
+
+
 
 
 
