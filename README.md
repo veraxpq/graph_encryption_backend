@@ -13,6 +13,10 @@ deleting users.
 For security issues, we encrypted the passwords before we store them into the database. And we add token
 verification to most APIs to intercept suspicious users.
 
+## Running the project
+
+To run the project, users can git clone or zip download the file, open the pom.xml file of the project "open as project", and run the springboot application. Users should connect to the MySQL database for the DB of the project to work. The SpringBoot application will run on localhost port 18081.
+
 ## Steganographic model
 
 <img width="633" alt="Screen Shot 2022-08-11 at 4 55 22 PM" src="https://user-images.githubusercontent.com/101501462/184261258-a3a27ab4-26bf-4d9e-bda0-88b672222ebc.png">
@@ -31,6 +35,7 @@ The "service" package of the java classes in the source file contains all the se
 The "mode" package are setters and getters for information related to login implementation.
 The "util" package includes our CipherHelpers, which is an implementation of our project security, DecryptLSB and EncryptLSB classes for the steganographic implementations, HttpUtils class that send request to url, JWTUtils class for realized security, Pixel class that allows the EncryptLSB and DecryptLSB methods to manipulate pixels of the stego image object, a StatusCode class for our HTTP request server status, an Uploader class that uses a third party API to upload image files that return URLs for the EncryptLSB class to read, and WebException class under the Apache License that handles and shows http errors. 
 We have a "wrapper" package with a VerifyToken class and bean that intercepts to add token verification before our backend API gets called. 
+The Controller layers are in the "controller" package, that provide the API endpoints.
 
 ### Token verification for security
 
